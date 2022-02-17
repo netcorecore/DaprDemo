@@ -11,7 +11,7 @@ metadata:
   labels:
     app: service01
 spec:
-  replicas: 2 # 2个副本
+  replicas: 3 # 3个副本
   selector:
     matchLabels:
       app: service01
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: service01
-          image: docker.io/netcorecore/service01:v1 # 上面定义的docker image
+          image: docker.io/k8schina/service01:v1 # 上面定义的docker image
           ports:
             - containerPort: 80
           imagePullPolicy: Always
@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
         - name: service02
-          image: docker.io/netcorecore/service02:v1 # 上面定义的docker image
+          image: docker.io/k8schina/service02:v1 # 上面定义的docker image
           ports:
             - containerPort: 80
           imagePullPolicy: Always
