@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dapr-demo # 命名空间
+  name: dapr-demo
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -11,7 +11,7 @@ metadata:
   labels:
     app: service01
 spec:
-  replicas: 3 # 3个副本
+  replicas: 3
   selector:
     matchLabels:
       app: service01
@@ -20,7 +20,7 @@ spec:
       labels:
         app: service01
       annotations:
-        dapr.io/enabled: "true" # 开启Dapr边车
+        dapr.io/enabled: "true"
         dapr.io/app-id: "service01"
         dapr.io/app-port: "80"
         dapr.io/sidecar-liveness-probe-delay-seconds: "10"
@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: service01
-          image: docker.io/k8schina/service01:v1 # 上面定义的docker image
+          image: docker.io/k8schina/service01:v1
           ports:
             - containerPort: 80
           imagePullPolicy: Always
@@ -51,7 +51,7 @@ spec:
       labels:
         app: service02
       annotations:
-        dapr.io/enabled: "true" # 开启Dapr边车
+        dapr.io/enabled: "true"
         dapr.io/app-id: "service02"
         dapr.io/app-port: "80"
         dapr.io/sidecar-liveness-probe-delay-seconds: "10"
@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
         - name: service02
-          image: docker.io/k8schina/service02:v1 # 上面定义的docker image
+          image: docker.io/k8schina/service02:v1
           ports:
             - containerPort: 80
           imagePullPolicy: Always
@@ -76,4 +76,4 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30006 # 对外开放可访问的端口
+      nodePort: 30006
