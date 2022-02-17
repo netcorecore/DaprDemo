@@ -25,10 +25,14 @@ spec:
         dapr.io/app-port: "80"
         dapr.io/sidecar-liveness-probe-delay-seconds: "10"
         dapr.io/sidecar-readiness-probe-delay-seconds: "10"
+        dapr.io/log-as-json: "true"
     spec:
       containers:
-      - name: service01
-        image: docker.io/netcorecore/service01:v1 # 上面定义的docker image
+        - name: service01
+          image: docker.io/netcorecore/service01:v1 # 上面定义的docker image
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -47,15 +51,18 @@ spec:
       labels:
         app: service02
       annotations:
-        dapr.io/enabled: "true"  # 开启Dapr边车
+        dapr.io/enabled: "true" # 开启Dapr边车
         dapr.io/app-id: "service02"
         dapr.io/app-port: "80"
         dapr.io/sidecar-liveness-probe-delay-seconds: "10"
         dapr.io/sidecar-readiness-probe-delay-seconds: "10"
     spec:
       containers:
-      - name: service02
-        image: docker.io/netcorecore/service02:v1  # 上面定义的docker image        
+        - name: service02
+          image: docker.io/netcorecore/service02:v1 # 上面定义的docker image
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
