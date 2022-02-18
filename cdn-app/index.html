@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <title>Dapr+Net6+K8S最小原型项目架构和实现</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quasar@1.15.21/dist/quasar.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <div id="q-app">
+      <template>
+        <div class="q-pa-md q-gutter-sm">
+          <q-banner rounded class="bg-primary text-white">
+            <template v-slot:avatar>
+              <img
+                src="http://k8schina.corecore.cn/dapr.png"
+                style="width: 100px; height: 64px"
+              >
+            </template>
+      
+            Dapr+Net6+K8S最小原型项目架构和实现            
+          </q-banner>
+        </div>
+      </template>
+      <template>
+        <div class="q-pa-md">
+          <q-list bordered>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122963744" target="_blank">01-架构篇</a>
+              </q-item-section>              
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://blog.csdn.net/shuaihj/article/details/122964798" target="_blank">02-给两台云主机安装CentOS</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122965232" target="_blank">03-远程登录并配置两台云主机</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122966450" target="_blank">04-给master节点安装nginx并做域名解析</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122967227" target="_blank">05-给两台云主机安装Docker</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122967789" target="_blank">06-给两台云主机安装K8S</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122968061" target="_blank">07-在Master主机上初始化K8S集群</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122968720" target="_blank">08-给K8S集群安装网络插件</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122969077" target="_blank">09-把Slave节点加入K8S集群</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122969361" target="_blank">10-在Master节点上给K8S集群安装Dapr</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122971594" target="_blank">11-使用AspNetCore6.0编写Dapr项目</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122971745" target="_blank">12-将Dapr项目部署到K8S集群</a>
+              </q-item-section>             
+            </q-item>
+            <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-avatar>
+                  <img src="http://k8schina.corecore.cn/dapr.jpg">
+                </q-avatar>
+              </q-item-section>
+              <q-item-section>
+                <a href="https://shuaihj.blog.csdn.net/article/details/122971958" target="_blank">13-架构总结</a>
+              </q-item-section>             
+            </q-item>
+            
+          </q-list>
+        </div>
+      </template>
+    </div>
+
+    <!-- Add the following at the end of your body tag -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.15.21/dist/quasar.umd.min.js"></script>
+
+    <script>
+      /*
+        Example kicking off the UI. Obviously, adapt this to your specific needs.
+        Assumes you have a <div id="q-app"></div> in your <body> above
+       */
+      new Vue({
+        el: "#q-app",
+        data: function () {
+          return {};
+        },
+        methods: {},
+        // ...etc
+      });
+    </script>
+  </body>
+</html>
